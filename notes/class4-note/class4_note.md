@@ -1,0 +1,45 @@
+# XTuner 大模型单卡低成本微调实战
+## 微调
+### 指令跟随微调
+在实际对话中通常存在三种角色：
+- system：相当于instructor
+- user：相当于question
+- assistant：相当于answer
+
+三种角色构成了对话模板，且不同LLM会有不同的LLM
+
+在xtuner中，对话模板的角色构建是由程序自动构建的
+
+![Alt text](image.png)
+![Alt text](image-1.png)
+### Xtuner中的微调原理：LoRA & QLoRA
+- 为什么需要使用LoRA方法进行微调？
+    - 如果对整个LLM的参数都进行微调，就需要很大的显存空间进行训练；而LoRA在模型原有Linear旁增加一个支路，在微调时只需更行这部分支路的参数，从而极大地降低微调对显存的要求
+    - QLoRA是对LoRA的一种改进，进一步降低了微调门槛
+    ![Alt text](image-2.png)
+
+- 全参数微调 & LoRA & QLoRA比较
+    - 全参数微调需要加载所有参数
+    - LoRA只需保存adapter中参数的优化器状态
+
+    ![Alt text](image-3.png)
+## Xtuner
+![Alt text](image-4.png)
+
+- 支持多种微调算法、模型生态
+- 傻瓜化、轻量级（微调所需的最小显存仅为8GB）
+- 还支持工具类模型的对话（相当于plugin）
+- 一键映射对话模板
+
+    ![Alt text](image-5.png)
+
+- 支持多数据样本拼接（如果显存充足，可以增强并行性，充分利用GPU资源）
+
+    ![Alt text](image-6.png)
+## 8GB 显存玩转LLM
+### Flash & DeepSpeed
+![Alt text](image-7.png)
+
+- 不同微调优化方法在不同显卡上的显存开销比较⬇️
+
+![Alt text](image-8.png)
