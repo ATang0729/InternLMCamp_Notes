@@ -4,3 +4,9 @@
 
 ## 本地推理
 ![Alt text](image.png)
+
+## 服务器API部署
+![Alt text](image-1.png)
+
+## 网页Demo部署
+![Alt text](image-2.png)
